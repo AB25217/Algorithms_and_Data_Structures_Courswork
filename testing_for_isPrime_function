@@ -1,0 +1,23 @@
+"""
+Author: Aleksandar Bozov
+
+Time and Date: 18:14 02/02/2024
+
+Purpose: To Test out the time complexity of the isPrime function
+"""
+import time
+from Special_Number import Special_Number_Finders
+
+
+
+#Test Cases
+test_cases = [257, 3779, 14741, 331777, 7772777, 111181111, 99999199999]
+
+def isPrimeTest(num):
+    start_time = time.time()
+    a = Special_Number_Finders()
+    print(f"The prime number chosen was {num}, the result was:{a._isPrime(num)} ,and the time complexity was {time.time() - start_time}")
+
+
+for i in test_cases: # for each number in the test cases
+    isPrimeTest(i) # use it as a testing parameter
