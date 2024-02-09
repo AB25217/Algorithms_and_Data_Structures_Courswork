@@ -1,0 +1,36 @@
+"""
+Author: Aleksandar Bozov
+Time and Date: 08:21 03/02/2024
+Purpose: To test out the functionality and performance of special_numbers_finder function
+"""
+import time
+from Special_Number import Special_Number_Finders
+
+def special_numbers_finder_tester(m,n):
+    """
+    Will test out the time and functionality of the special_numbers_finder function  
+    """
+    a = Special_Number_Finders()
+    start_time = time.time()
+    return f"Parameters were {m}, {n}, and the result was: {a.find_special_numbers(m,n)}. The runtime was {time.time() - start_time} \n"
+
+
+#Below are the test cases that will be used to test the functionality of 
+#First times are with the trial division method for numbers, the second times are with the sieve of Eratosthenes
+test_cases = [
+    [1, 2000], # 0.019585371017456055, 0.0013759136199951172
+    [100, 10000], # 0.30422091484069824, 0.0023040771484375
+    [20000, 80000], # 15.114100694656372, 0.018166065216064453
+    [100000, 2000000], # null ,0.45346903800964355
+    [2000000, 9000000], # null,2.000241994857788
+    [10_000_000, 100_000_000], # null, 22.65491509437561
+    [100000000, 400000000],#null,  86.3282778263092
+    [1_100_000_000, 15_000_000_000],#null 
+    [15_000_000_000, 100_000_000_000],#null
+    [1, 1_000_000_000_000],#null
+]
+
+for i in test_cases:
+    print(special_numbers_finder_tester(i[0], i[1]))
+
+#print(special_numbers_finder_tester(1, 1_000_000_000_000))

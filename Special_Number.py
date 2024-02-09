@@ -38,17 +38,26 @@ class Special_Number_Finders:
         else:
             self.isPalidromic = False # the number is not palidromic
             return self.isPalidromic # return false
+
+            
     def find_special_numbers(self,m,n):
         """
         A function that will find special numbers between n and m. Special numbers are prime numbers and
         palindromic numbers
         """
-        if m > n: # checking parameters
-            raise ValueError("m has to be smaller or equal to n")
-        self._special_numbers = [] # a list that will contain all special numbers
-        for i in range(m,n+1): # for each number in range of m and n (n+1 was added because loop will stop at n-1 instead of n proper)
-            if self._isPrime(i) and self._isPalindromic(i): # if the number is both prime and palindromic
-                self._special_numbers.append(i)#append it to the special numbers list
-        if len(self._special_numbers) > 6: # if special numbers are more than 6
-            return f"{m}: {self._special_numbers[0:3]}, {self._special_numbers[-4:-1]}" # list the first and last 3 special numbers
-        return f"{m}: {self._special_numbers}" # return the special numbers list
+        if m >= n:
+            raise ValueError("m cannot be larger than n")
+
+        prime_numbers = [True for i in range(n)]
+        prime_numbers[0] = False
+        prime_numbers[1] = False
+
+        for i in range(2, int(n**0.5)):
+            if prime_numbers[i] == True:
+                for j in range(int(i**2), n, i):
+                    prime_numbers[j] = False
+        
+
+        self.prime_numbers_array = [i for i in range(m,n) if prime_numbers[i] == True and self._isPalindromic(i) == True]        
+
+        return f"{m}: {self.prime_numbers_array[0:3]}, {self.prime_numbers_array[-4:-1]}" # list the first and last 3 special numbers
